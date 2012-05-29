@@ -1,6 +1,9 @@
 extract :: [String] -> [[String]]
-extract (_:_:_:[]) = []
-extract (a:b:c:[]:rs) = extract (a:b:c:rs)
-extract ([]:[]:c:r:rs) = [c, r] : extract([]:[]:c:rs)
-extract ([]:b:_:r:rs) = [b, r] : extract([]:b:[]:rs)
-extract (a:b:_:r:rs) = [b ++ a, r] : extract(a:b:[]:rs)
+extract ([]:[]:c:rs) = trix c rs
+extract ([]:b:_:rs) = trix b rs
+extract (a:b:_:rs) = trix (b ++ a) rs
+
+trix :: String -> [String] -> [[String]]
+trix names [] = []
+trix names ([]:rs) = trix names rs
+trix names (r:rs) = [names, r] : trix names rs
