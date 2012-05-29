@@ -1,3 +1,5 @@
+module TrixExt (extract) where
+
 extract :: [String] -> [[String]]
 extract ([]:[]:c:rs) = trix c rs
 extract ([]:b:_:rs) = trix b rs
